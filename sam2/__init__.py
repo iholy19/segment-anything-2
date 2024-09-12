@@ -5,5 +5,11 @@
 # LICENSE file in the root directory of this source tree.
 
 from hydra import initialize_config_module
+from hydra.core.global_hydra import GlobalHydra
+import os
 
-initialize_config_module("sam2_configs", version_base="1.2")
+print("FROM app:", os.getcwd())
+
+if GlobalHydra.instance().is_initialized()==False:
+  GlobalHydra.instance().clear()
+  initialize_config_module("../sam2_configs", version_base="1.2")
